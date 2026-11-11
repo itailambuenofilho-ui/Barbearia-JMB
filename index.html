@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Barbearia JMB — Natal na régua</title>
-<meta name="description" content="Barbearia JMB, na Rua Almeida Guerra, 530, Setor Paraíso. Corte, barba, sobrancelha e risco. Atendimento por ordem de chegada. Monte seu pedido e mande no WhatsApp.">
+<meta name="description" content="Barbearia JMB, na Rua Almeida Guerra, 530, Setor Paraíso. Corte, barba, sobrancelha e risco. Segunda a sábado, das 9h às 20h, por ordem de chegada. Monte seu pedido e mande no WhatsApp.">
 <meta name="theme-color" content="#121110">
 <meta property="og:title" content="Barbearia JMB — Natal na régua">
 <meta property="og:description" content="Corte, barba e risco no Setor Paraíso. Monte seu pedido pela tabela 2027 e mande no WhatsApp.">
@@ -211,6 +211,8 @@ button,input{font:inherit;color:inherit}
 .contato a.linha:hover{background:var(--accent);color:var(--black);padding-left:calc(var(--m) + 18px)}
 .contato .linha small{font-size:var(--step-body);font-weight:600;font-stretch:100%;letter-spacing:0;line-height:1.3;text-align:right;padding-bottom:.35em;flex:none}
 .contato h2.linha{margin:0;text-transform:none}
+.contato .linha{overflow-wrap:anywhere}
+.rodape__cols a{overflow-wrap:anywhere}
 .contato .bora{background:var(--accent)!important;color:var(--black)}
 .contato .bora:hover{background:var(--paper)!important}
 .contato .bola{flex:none;width:.95em;height:.95em;border-radius:50%;background:var(--black);display:grid;place-items:center;transition:transform .35s var(--ease)}
@@ -279,7 +281,7 @@ button,input{font:inherit;color:inherit}
   </div>
   <div class="hero__faixa">
     <div class="hero__linha">
-      <p class="lead">Corte, barba, sobrancelha e risco no Setor Paraíso. É só chegar: o atendimento é por ordem de chegada.</p>
+      <p class="lead">Corte, barba, sobrancelha e risco no Setor Paraíso. Segunda a sábado, das 9h às 20h, por ordem de chegada.</p>
       <div class="hero__acoes">
         <a class="btn" href="#tabela">Montar meu pedido
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M12 4v15M5 13l7 7 7-7"/></svg></a>
@@ -398,8 +400,9 @@ button,input{font:inherit;color:inherit}
   <h2 class="linha" data-r>Onde fica <small>Sem hora marcada.<br>Chegou, entrou na fila.</small></h2>
   <a class="linha" data-r href="https://www.google.com/maps/search/?api=1&query=Barbearia+JMB+Rua+Almeida+Guerra+530+Setor+Para%C3%ADso" target="_blank" rel="noopener">Rua Almeida Guerra, 530 <small>Abrir no mapa</small></a>
   <p class="linha" data-r>Qd. 31 Lt. 08 · Setor Paraíso</p>
-  <p class="linha" data-r>Por ordem de chegada</p>
+  <p class="linha" data-r>Seg a sáb · 9h às 20h <small id="aberto">Por ordem de chegada</small></p>
   <a class="linha" data-r href="https://wa.me/5562999775807" target="_blank" rel="noopener">(62) 99977-5807 <small>WhatsApp</small></a>
+  <a class="linha" data-r href="https://www.instagram.com/jailson_barbeariajmb" target="_blank" rel="noopener">@jailson_barbeariajmb <small>Instagram</small></a>
   <a class="linha bora" data-r href="https://wa.me/5562999775807?text=Ol%C3%A1%2C%20Barbearia%20JMB!%20Quero%20passar%20a%C3%AD." target="_blank" rel="noopener" aria-label="Bora? Chamar a Barbearia JMB no WhatsApp">Bora? <span class="bola"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></span></a>
 </section>
 
@@ -409,8 +412,8 @@ button,input{font:inherit;color:inherit}
   <div class="rodape__cols">
     <div><h3>Endereço</h3><p>Rua Almeida Guerra, 530<br>Qd. 31 Lt. 08<br>Setor Paraíso</p></div>
     <div><h3>Navegar</h3><ul><li><a href="#tabela">Tabela de preço</a></li><li><a href="#natal">Natal</a></li><li><a href="#casa">A casa</a></li><li><a href="#onde">Onde fica</a></li></ul></div>
-    <div><h3>Contato</h3><ul><li><a href="https://wa.me/5562999775807" target="_blank" rel="noopener">WhatsApp (62) 99977-5807</a></li><li><a href="tel:+5562999775807">Ligar agora</a></li></ul></div>
-    <div><h3>Regras da casa</h3><p>Atendimento por ordem de chegada.<br>Não trabalhamos com fiado.</p></div>
+    <div><h3>Contato</h3><ul><li><a href="https://wa.me/5562999775807" target="_blank" rel="noopener">WhatsApp (62) 99977-5807</a></li><li><a href="https://www.instagram.com/jailson_barbeariajmb" target="_blank" rel="noopener">Instagram @jailson_barbeariajmb</a></li><li><a href="tel:+5562999775807">Ligar agora</a></li></ul></div>
+    <div><h3>Horário e regras</h3><p>Segunda a sábado, das 9h às 20h.<br>Atendimento por ordem de chegada.<br>Não trabalhamos com fiado.</p></div>
   </div>
   <div>
     <div class="rodape__nome" aria-hidden="true"><svg viewBox="0 0 640 72" data-fit><text x="0" y="71">BARBEARIA JMB</text></svg></div>
@@ -484,6 +487,16 @@ button,input{font:inherit;color:inherit}
   }
   conta(); setInterval(conta, 1000);
   $('#ano').textContent = new Date().getFullYear();
+
+  /* aberto agora? segunda a sábado, 9h às 20h, horário de Brasília */
+  function aberto(){
+    try{
+      var p = new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',weekday:'short',hour:'numeric',hour12:false}).formatToParts(new Date());
+      var dia = p.filter(function(x){return x.type==='weekday'})[0].value, h = Number(p.filter(function(x){return x.type==='hour'})[0].value) % 24;
+      $('#aberto').textContent = (dia !== 'Sun' && h >= 9 && h < 20) ? 'Aberto agora · por ordem de chegada' : 'Fechado agora · por ordem de chegada';
+    }catch(e){}
+  }
+  aberto(); setInterval(aberto, 60000);
 
   /* tabela -> pedido -> WhatsApp */
   var botoes = $$('.servico'), itens = $('#itens'), totalEl = $('#total'), zap = $('#zap'), presente = $('#presente');
