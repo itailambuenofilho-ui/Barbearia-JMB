@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barbearia JMB — Natal na régua</title>
+<meta name="description" content="Barbearia JMB, na Rua Almeida Guerra, 530, Setor Paraíso. Corte, barba, sobrancelha e risco. Atendimento por ordem de chegada. Monte seu pedido e mande no WhatsApp.">
+<meta name="theme-color" content="#121110">
+<meta property="og:title" content="Barbearia JMB — Natal na régua">
+<meta property="og:description" content="Corte, barba e risco no Setor Paraíso. Monte seu pedido pela tabela 2027 e mande no WhatsApp.">
+<meta property="og:image" content="assets/fachada-rua.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121110'/%3E%3Crect y='44' width='64' height='20' fill='%23f26b1d'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='26' fill='%23f3f0ea'%3EJMB%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{
+  font-family:"Archivo";
+  src:url("assets/archivo.woff2") format("woff2");
+  font-weight:100 900; font-stretch:62% 125%; font-style:normal; font-display:swap;
+}
+:root{
+  --bg:#121110; --surface:#1d1a17; --surface-2:#26221e;
+  --ink:#f3f0ea; --muted:#bfb5a6;
+  --paper:#f3f0ea; --paper-2:#e6e2da; --black:#121110;
+  --accent:#f26b1d;
+  --verde:#0d3b2a; --verde-2:#124a35;
+  --vermelho:#c8102e; --azul:#1f5fd6;
+  --m:clamp(16px,2.2vw,32px);
+  --step-small:clamp(.8125rem,.79rem + .1vw,.875rem);
+  --step-body:clamp(1.0625rem,1rem + .25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + .7vw,1.625rem);
+  --step-head:clamp(2.25rem,1.3rem + 3.6vw,4.5rem);
+  --step-big:clamp(2.75rem,6vw,5.5rem);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:var(--step-body);line-height:1.5;font-stretch:100%;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--black)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.display{font-weight:900;font-stretch:62%;text-transform:uppercase;letter-spacing:-.02em;line-height:.9}
+.h2{font-size:var(--step-head);font-weight:900;font-stretch:62%;text-transform:uppercase;letter-spacing:-.015em;line-height:.95;text-wrap:balance}
+.lead{font-size:var(--step-lead);line-height:1.35}
+.small{font-size:var(--step-small)}
+.wrap{padding-inline:var(--m)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;gap:.6em;background:var(--accent);color:var(--black);font-weight:800;text-decoration:none;border:0;padding:.85em 1.25em;cursor:pointer;transition:transform .2s var(--ease),background-color .2s;white-space:nowrap}
+.btn:hover{background:var(--ink);transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+.btn--tinta{background:var(--black);color:var(--paper)}
+.btn--tinta:hover{background:var(--vermelho);color:var(--paper)}
+
+/* luzes de Natal */
+.luzes{position:relative;display:flex;justify-content:space-between;padding-inline:var(--m);height:30px;background:var(--bg);border-top:4px solid #2c2722}
+.luzes i{display:block;width:12px;height:18px;margin-top:5px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;background:var(--c);position:relative;animation:pisca 2.4s var(--d,0s) infinite;cursor:pointer;transition:transform .2s var(--ease)}
+.luzes i::before{content:"";position:absolute;left:3px;top:-5px;width:6px;height:6px;background:#2c2722}
+.luzes i:hover{transform:scale(1.5)}
+.luzes i:nth-child(5n+1){--c:var(--vermelho)}
+.luzes i:nth-child(5n+2){--c:var(--accent);--d:.5s}
+.luzes i:nth-child(5n+3){--c:var(--paper);--d:1s}
+.luzes i:nth-child(5n+4){--c:#2fa36b;--d:1.5s}
+.luzes i:nth-child(5n+5){--c:var(--azul);--d:.8s}
+@keyframes pisca{0%,100%{opacity:1}45%{opacity:1}50%{opacity:.25}60%{opacity:1}}
+@media (max-width:700px){.luzes i:nth-child(even){display:none}}
+
+/* barra */
+.barra{display:flex;align-items:center;justify-content:space-between;gap:var(--m);padding:10px var(--m);background:var(--bg);position:sticky;top:0;z-index:30}
+.marca{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:1.5rem;letter-spacing:-.01em;text-decoration:none;line-height:1}
+.barra nav ul{display:flex;gap:clamp(14px,2vw,32px);align-items:center}
+.barra nav a{text-decoration:none;font-weight:600;font-size:1rem;padding:.4em 0;display:inline-block;transition:color .2s}
+.barra nav a:hover{color:var(--accent)}
+.neve-btn{display:inline-flex;align-items:center;gap:.5em;background:var(--surface-2);border:0;padding:.55em .9em;font-weight:700;font-size:.9375rem;cursor:pointer;transition:background-color .2s,transform .2s var(--ease)}
+.neve-btn:hover{transform:translateY(-2px)}
+.neve-btn svg{width:1.1em;height:1.1em;transition:transform .6s var(--ease)}
+.neve-btn[aria-pressed="true"]{background:var(--paper);color:var(--black)}
+.neve-btn[aria-pressed="true"] svg{transform:rotate(180deg)}
+@media (max-width:760px){.barra nav li.esconde{display:none}}
+
+/* neve */
+#neve{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+
+/* fita de barbeiro */
+.fita{height:22px;overflow:hidden;background:var(--paper)}
+.fita svg{display:block;width:calc(100% + 120px);height:100%;animation:fita 3s linear infinite}
+@keyframes fita{to{transform:translateX(-60px)}}
+
+/* hero */
+.hero{display:flex;flex-direction:column;height:calc(100svh - 90px);min-height:560px}
+.hero__foto{position:relative;flex:1 1 0;min-height:200px;overflow:hidden;background:var(--surface)}
+.hero__foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 62%;animation:deriva 24s ease-in-out infinite alternate}
+@keyframes deriva{from{transform:scale(1)}to{transform:scale(1.08) translate(-1.5%,-1%)}}
+.hero__faixa{padding:24px var(--m) clamp(12px,1.6vw,24px)}
+.hero__linha{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--m);margin-bottom:clamp(16px,2vw,28px)}
+.hero__linha p{max-width:34em}
+.hero__acoes{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.hero h1{transform-origin:left bottom;will-change:transform}
+.hero h1 svg{display:block;width:100%;height:auto;overflow:visible;fill:var(--ink)}
+.hero h1 text{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-stretch:62%;font-size:100px;letter-spacing:-1.5px}
+.nome--fone{display:none!important}
+.gorro{opacity:0;transition:opacity .4s}
+.gorro.on{opacity:1}
+.gorro g{transform-box:fill-box;transform-origin:50% 100%;animation:gorro 3.2s ease-in-out infinite}
+@keyframes gorro{0%,100%{transform:rotate(0)}50%{transform:rotate(-5deg)}}
+@media (max-width:760px){
+  .hero{min-height:680px}
+  .hero__foto img{object-position:50% 60%}
+  .hero__linha{flex-direction:column}
+  .hero__acoes{justify-content:flex-start}
+  .nome--mesa{display:none!important}
+  .nome--fone{display:block!important}
+  .nome--fone + .nome--fone{margin-top:8px}
+}
+
+/* natal */
+.natal{background:var(--verde);padding-block:clamp(88px,11vw,170px)}
+.natal__txt{grid-column:1/8;display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);align-items:flex-start}
+.natal__foto{grid-column:8/13;position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--verde-2)}
+.natal__foto img{width:100%;height:100%;object-fit:cover}
+.relogio{display:flex;gap:clamp(8px,1.2vw,18px);width:100%}
+.relogio div{flex:1;background:var(--verde-2);padding:clamp(12px,1.6vw,24px) clamp(10px,1.4vw,22px) clamp(8px,1vw,16px)}
+.relogio b{display:block;font-size:clamp(3rem,8.4vw,8.5rem);font-weight:900;font-stretch:62%;line-height:.85;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.relogio span{display:block;margin-top:.5em;font-size:var(--step-body);font-weight:600}
+.relogio b.tique{animation:tique .5s var(--ease)}
+@keyframes tique{from{transform:translateY(-12%);opacity:.4}to{transform:none;opacity:1}}
+.natal p{max-width:34em}
+@media (max-width:860px){
+  .natal__txt{grid-column:1/-1}
+  .natal__foto{grid-column:1/-1;aspect-ratio:4/3;margin-top:40px}
+}
+
+/* tabela */
+.tabela{background:var(--paper);color:var(--black);padding-block:clamp(88px,11vw,170px)}
+.tabela__lista{grid-column:1/8}
+.tabela__lista .h2{margin-bottom:.35em}
+.tabela__lista>p{max-width:32em;margin-bottom:clamp(28px,3vw,44px)}
+.servicos{display:flex;flex-direction:column;gap:6px}
+.servico{display:flex;align-items:center;gap:clamp(10px,1.2vw,18px);width:100%;text-align:left;background:var(--paper-2);border:0;padding:clamp(14px,1.5vw,22px) clamp(12px,1.4vw,22px);cursor:pointer;transition:background-color .2s,color .2s,transform .2s var(--ease)}
+.servico:hover{transform:translateX(6px)}
+.servico:active{transform:scale(.99)}
+.servico__caixa{flex:none;width:30px;height:30px;background:var(--paper);display:grid;place-items:center;transition:background-color .2s}
+.servico__caixa svg{width:20px;height:20px;stroke:var(--black);stroke-width:4;fill:none;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .3s var(--ease)}
+.servico__nome{font-weight:800;font-size:var(--step-lead);line-height:1.15}
+.servico__pontos{flex:1;min-width:12px;height:0;border-bottom:4px dotted currentColor;opacity:.45;transform:translateY(.3em)}
+.servico__preco{font-weight:900;font-size:var(--step-lead);color:var(--vermelho);font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .2s}
+.servico[aria-pressed="true"]{background:var(--black);color:var(--paper)}
+.servico[aria-pressed="true"] .servico__caixa{background:var(--accent)}
+.servico[aria-pressed="true"] .servico__caixa svg{stroke-dashoffset:0}
+.servico[aria-pressed="true"] .servico__preco{color:var(--accent)}
+.pedido{grid-column:8/13;align-self:start;position:sticky;top:76px;background:var(--black);color:var(--paper);padding:clamp(20px,2.2vw,32px);display:flex;flex-direction:column;gap:18px}
+.pedido h3{font-size:var(--step-lead);font-weight:800;line-height:1.1}
+.pedido__itens{display:flex;flex-direction:column;gap:6px;min-height:3.2em}
+.pedido__itens li{display:flex;justify-content:space-between;gap:12px;animation:entra .35s var(--ease)}
+.pedido__itens li.vazio{color:var(--muted)}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pedido__total{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.pedido__total span{font-weight:700}
+.pedido__total b{background:var(--vermelho);color:var(--paper);padding:.08em .16em 0;font-size:clamp(3rem,5.4vw,5.25rem);font-weight:900;font-stretch:62%;line-height:.95;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.pedido label{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.pedido input{background:var(--surface-2);border:0;border-bottom:3px solid var(--muted);padding:.7em .8em;color:var(--paper);width:100%}
+.pedido input::placeholder{color:var(--muted)}
+.pedido input:focus{border-bottom-color:var(--accent);outline:none}
+.pedido .btn{justify-content:center;font-size:var(--step-body)}
+.pedido .btn:hover{background:var(--paper)}
+.pedido figure{display:flex;gap:14px;align-items:center;margin-top:6px}
+.pedido figure img{width:92px;height:92px;object-fit:cover;object-position:50% 34%;flex:none}
+.pedido figcaption{color:var(--muted);font-size:var(--step-small);line-height:1.4}
+@media (max-width:860px){
+  .tabela__lista,.pedido{grid-column:1/-1}
+  .pedido{position:static;margin-top:28px}
+  .servico:hover{transform:none}
+}
+@media (max-width:480px){
+  .servico__nome,.servico__preco{font-size:1.0625rem}
+  .servico__caixa{width:26px;height:26px}
+}
+
+/* verbos */
+.verbo{position:relative;height:100svh;min-height:520px;background:var(--surface);overflow:clip}
+.verbo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.verbo::after{content:"";position:absolute;inset:0;background:rgba(10,9,8,.38)}
+.verbo__palavra{position:sticky;top:50%;z-index:2;height:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.verbo__palavra h2{font-size:clamp(5.5rem,21vw,21rem);font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.8;letter-spacing:-.02em;color:var(--paper)}
+.verbo p{position:absolute;left:0;bottom:0;z-index:3;background:var(--bg);padding:16px var(--m);max-width:min(30em,100%);font-size:var(--step-body)}
+
+/* galeria */
+.galeria{padding-block:clamp(88px,11vw,170px) clamp(72px,9vw,140px)}
+.galeria__topo{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--m);margin-bottom:clamp(28px,3vw,48px)}
+.galeria__topo p{color:var(--muted);max-width:22em;text-align:right}
+.tira{display:flex;gap:clamp(12px,1.6vw,24px);overflow-x:auto;padding-inline:var(--m);scroll-snap-type:x proximity;scroll-padding-inline:var(--m);scrollbar-width:none;cursor:grab;-webkit-overflow-scrolling:touch}
+.tira::-webkit-scrollbar{display:none}
+.tira.arrasta{cursor:grabbing;scroll-snap-type:none}
+.tira figure{flex:none;width:clamp(230px,24vw,380px);scroll-snap-align:start}
+.tira .quadro{overflow:hidden;aspect-ratio:3/4;background:var(--surface)}
+.tira img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease);-webkit-user-drag:none;user-select:none}
+.tira figure:hover img{transform:scale(1.07)}
+.tira figcaption{margin-top:12px;font-size:1rem;font-weight:600;line-height:1.35}
+@media (max-width:760px){.galeria__topo{flex-direction:column;align-items:flex-start}.galeria__topo p{text-align:left}.tira figure{width:64vw}}
+
+/* contato */
+.contato .linha{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--m);min-height:clamp(84px,10.4vw,150px);padding:14px var(--m) clamp(12px,1.6vw,24px);font-size:var(--step-big);font-weight:800;font-stretch:75%;line-height:1;letter-spacing:-.02em;text-decoration:none;background:var(--surface);transition:background-color .25s,color .25s,padding-left .35s var(--ease)}
+.contato .linha:nth-child(even){background:var(--surface-2)}
+.contato a.linha:hover{background:var(--accent);color:var(--black);padding-left:calc(var(--m) + 18px)}
+.contato .linha small{font-size:var(--step-body);font-weight:600;font-stretch:100%;letter-spacing:0;line-height:1.3;text-align:right;padding-bottom:.35em;flex:none}
+.contato h2.linha{margin:0;text-transform:none}
+.contato .bora{background:var(--accent)!important;color:var(--black)}
+.contato .bora:hover{background:var(--paper)!important}
+.contato .bola{flex:none;width:.95em;height:.95em;border-radius:50%;background:var(--black);display:grid;place-items:center;transition:transform .35s var(--ease)}
+.contato .bola svg{width:.45em;height:.45em;stroke:var(--paper);stroke-width:3;fill:none}
+.contato .bora:hover .bola{transform:translateX(10px) rotate(-45deg)}
+@media (max-width:760px){.contato .linha{font-size:9.2vw;align-items:flex-start;flex-direction:column;justify-content:flex-end;gap:4px}.contato .linha small{text-align:left;padding:0}.contato h2.linha small{display:none}.contato .bora{flex-direction:row;align-items:center;justify-content:space-between}}
+
+/* rodapé */
+.rodape{background:var(--paper);color:var(--black);padding:clamp(40px,5vw,72px) var(--m) 20px;display:flex;flex-direction:column;gap:clamp(64px,12vw,200px)}
+.rodape__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--m)}
+.rodape__cols h3{font-size:1rem;font-weight:800;margin-bottom:.5em}
+.rodape__cols li,.rodape__cols p{font-size:1rem;line-height:1.6}
+.rodape__cols a{text-decoration:none;font-weight:600}
+.rodape__cols a:hover{color:var(--vermelho)}
+.rodape__nome svg{display:block;width:100%;height:auto;fill:var(--black);overflow:visible}
+.rodape__nome text{font-family:"Archivo",Arial,sans-serif;font-weight:900;font-stretch:62%;font-size:100px;letter-spacing:-1.5px}
+.rodape__legal{margin-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:var(--step-small)}
+@media (max-width:760px){.rodape__cols{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}}
+
+/* entradas */
+.js [data-r]{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 80ms)}
+.js [data-r].in{opacity:1;transform:none}
+.js [data-r="foto"] img{transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.js [data-r="foto"].in img{transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .js [data-r],.js [data-r] img{opacity:1;transform:none}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<canvas id="neve" aria-hidden="true"></canvas>
+
+<div class="luzes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="barra">
+  <a class="marca" href="#topo" aria-label="Barbearia JMB, início">JMB</a>
+  <nav aria-label="Principal">
+    <ul>
+      <li><a href="#tabela">Tabela</a></li>
+      <li class="esconde"><a href="#natal">Natal</a></li>
+      <li class="esconde"><a href="#casa">A casa</a></li>
+      <li><a href="#onde">Onde fica</a></li>
+      <li><button class="neve-btn" id="neveBtn" type="button" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M3.3 7l17.4 10M20.7 7 3.3 17M12 6l-2.5-2.5M12 6l2.5-2.5M12 18l-2.5 2.5M12 18l2.5 2.5"/></svg>
+        Neve</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="topo">
+
+<section class="hero">
+  <div class="hero__foto">
+    <picture>
+      <source media="(max-width:760px)" srcset="assets/fachada.jpg">
+      <img src="assets/fachada-rua.jpg" width="1600" height="1200" alt="Fachada laranja e preta da Barbearia JMB, com o letreiro, o cavalete na calçada e uma árvore na frente" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="fita" aria-hidden="true">
+    <svg preserveAspectRatio="none"><defs><pattern id="listras" width="60" height="22" patternUnits="userSpaceOnUse" patternTransform="skewX(-35)"><rect width="60" height="22" fill="#f3f0ea"/><rect width="15" height="22" fill="#c8102e"/><rect x="30" width="15" height="22" fill="#1f5fd6"/></pattern></defs><rect width="100%" height="100%" fill="url(#listras)"/></svg>
+  </div>
+  <div class="hero__faixa">
+    <div class="hero__linha">
+      <p class="lead">Corte, barba, sobrancelha e risco no Setor Paraíso. É só chegar: o atendimento é por ordem de chegada.</p>
+      <div class="hero__acoes">
+        <a class="btn" href="#tabela">Montar meu pedido
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M12 4v15M5 13l7 7 7-7"/></svg></a>
+      </div>
+    </div>
+    <h1 aria-label="Barbearia JMB" id="nome">
+      <svg class="nome--mesa" viewBox="0 0 640 72" aria-hidden="true" data-fit>
+        <text x="0" y="71">BARBEARIA JMB</text>
+        <g class="gorro"><g>
+          <path d="M6 64C16 18 62-6 92 28c-14-6-22 6-8 36Z" fill="#c8102e"/>
+          <rect x="0" y="58" width="98" height="20" rx="10" fill="#f3f0ea"/>
+          <circle cx="94" cy="30" r="11" fill="#f3f0ea"/>
+        </g></g>
+      </svg>
+      <svg class="nome--fone" viewBox="0 0 440 72" aria-hidden="true" data-fit><text x="0" y="71">BARBEARIA</text></svg>
+      <svg class="nome--fone" viewBox="0 0 176 72" aria-hidden="true" data-fit>
+        <text x="0" y="71">JMB</text>
+        <g class="gorro"><g>
+          <path d="M6 64C16 18 62-6 92 28c-14-6-22 6-8 36Z" fill="#c8102e"/>
+          <rect x="0" y="58" width="98" height="20" rx="10" fill="#f3f0ea"/>
+          <circle cx="94" cy="30" r="11" fill="#f3f0ea"/>
+        </g></g>
+      </svg>
+    </h1>
+  </div>
+</section>
+
+<section class="natal wrap" id="natal">
+  <div class="grid">
+    <div class="natal__txt">
+      <h2 class="h2" id="natalTitulo" data-r>O Natal está chegando</h2>
+      <div class="relogio" id="relogio" data-r style="--i:1" role="timer" aria-label="Contagem regressiva para o Natal">
+        <div><b data-u="d">--</b><span>dias</span></div>
+        <div><b data-u="h">--</b><span>horas</span></div>
+        <div><b data-u="m">--</b><span>min</span></div>
+        <div><b data-u="s">--</b><span>seg</span></div>
+      </div>
+      <p class="lead" data-r style="--i:2">Na JMB ninguém marca horário, então na semana do Natal senta primeiro quem chega primeiro. Venha antes da correria e apareça na ceia com o corte em dia.</p>
+      <a class="btn" href="#tabela" data-r style="--i:3">Ver a tabela 2027</a>
+    </div>
+    <figure class="natal__foto" data-r="foto">
+      <img src="assets/cadeiras.jpg" width="1200" height="1600" loading="lazy" alt="As cadeiras da Barbearia JMB em frente às bancadas de palete, com espelhos e lâmpadas penduradas em corda">
+    </figure>
+  </div>
+</section>
+
+<section class="tabela wrap" id="tabela">
+  <div class="grid">
+    <div class="tabela__lista">
+      <h2 class="h2" data-r>Tabela de preço 2027</h2>
+      <p class="lead" data-r style="--i:1">Marque o que você vai fazer. A conta fecha na hora e o pedido já sai escrito para o WhatsApp.</p>
+      <ul class="servicos" id="servicos">
+        <li data-r style="--i:1"><button class="servico" type="button" aria-pressed="false" data-id="corte" data-nome="Só corte de cabelo" data-preco="50"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Só corte de cabelo</span><span class="servico__pontos"></span><span class="servico__preco">R$ 50,00</span></button></li>
+        <li data-r style="--i:2"><button class="servico" type="button" aria-pressed="false" data-id="barba" data-nome="Barba" data-preco="35"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Barba</span><span class="servico__pontos"></span><span class="servico__preco">R$ 35,00</span></button></li>
+        <li data-r style="--i:3"><button class="servico" type="button" aria-pressed="false" data-id="combo" data-nome="Corte de barba e cabelo" data-preco="85"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Corte de barba e cabelo</span><span class="servico__pontos"></span><span class="servico__preco">R$ 85,00</span></button></li>
+        <li data-r style="--i:4"><button class="servico" type="button" aria-pressed="false" data-id="sobrancelha" data-nome="Sobrancelha" data-preco="20"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Sobrancelha</span><span class="servico__pontos"></span><span class="servico__preco">R$ 20,00</span></button></li>
+        <li data-r style="--i:5"><button class="servico" type="button" aria-pressed="false" data-id="risco-simples" data-nome="Risco simples" data-preco="20"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Risco simples</span><span class="servico__pontos"></span><span class="servico__preco">R$ 20,00</span></button></li>
+        <li data-r style="--i:6"><button class="servico" type="button" aria-pressed="false" data-id="risco-detalhado" data-nome="Risco detalhado" data-preco="35"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Risco detalhado</span><span class="servico__pontos"></span><span class="servico__preco">R$ 35,00</span></button></li>
+        <li data-r style="--i:7"><button class="servico" type="button" aria-pressed="false" data-id="pezinho" data-nome="Acabamento só no pezinho" data-preco="20"><span class="servico__caixa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg></span><span class="servico__nome">Acabamento só no pezinho</span><span class="servico__pontos"></span><span class="servico__preco">R$ 20,00</span></button></li>
+      </ul>
+    </div>
+
+    <aside class="pedido" aria-labelledby="pedidoTitulo" data-r style="--i:2">
+      <h3 id="pedidoTitulo">Seu pedido</h3>
+      <ul class="pedido__itens" id="itens" aria-live="polite"><li class="vazio">Nada marcado ainda.</li></ul>
+      <p class="pedido__total"><span>Total</span><b id="total">R$ 0,00</b></p>
+      <label for="presente">É presente de Natal? Para quem?
+        <input id="presente" type="text" maxlength="40" placeholder="Nome de quem vai ganhar (opcional)" autocomplete="off">
+      </label>
+      <a class="btn" id="zap" href="https://wa.me/5562999775807?text=Ol%C3%A1%2C%20Barbearia%20JMB!" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.1-1.100.1-1.800-.1-1.700-.6-3.800-1.700-5.600-4.500-.9-1.400-1.100-2.500-.9-3.300.2-.7.8-1.300 1.100-1.400h.7c.2 0 .5 0 .7.600l.9 2.100c.1.2.1.4 0 .6l-.7.9c-.1.2-.2.3 0 .6.5.9 1.700 2.300 3.500 3 .3.1.5.1.6-.1l.9-1.100c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4 0 .1 0 .7-.2 1.200Z"/></svg>
+        Mandar no WhatsApp</a>
+      <figure>
+        <img src="assets/tabela.jpg" width="900" height="1600" loading="lazy" alt="Placa da tabela de preço 2027 pendurada na parede de palete da Barbearia JMB">
+        <figcaption>Os mesmos valores da placa que fica na parede da barbearia.</figcaption>
+      </figure>
+    </aside>
+  </div>
+</section>
+
+<div id="casa">
+  <section class="verbo">
+    <img src="assets/fachada.jpg" width="1200" height="1600" loading="lazy" alt="Entrada da Barbearia JMB vista da calçada, com o cavalete e a porta de vidro">
+    <div class="verbo__palavra"><h2>Chega</h2></div>
+    <p>Fachada laranja e preta na Rua Almeida Guerra, 530. Não precisa marcar: é por ordem de chegada.</p>
+  </section>
+  <section class="verbo">
+    <img src="assets/salao.jpg" width="1200" height="1600" loading="lazy" alt="Interior da barbearia com sofá, ar-condicionado, banquetas e parede de palete">
+    <div class="verbo__palavra"><h2>Espera</h2></div>
+    <p>Sofá, ar-condicionado e TV ligada enquanto a sua vez não chega.</p>
+  </section>
+  <section class="verbo">
+    <img src="assets/cadeiras.jpg" width="1200" height="1600" loading="lazy" alt="Cadeiras de barbeiro alinhadas em frente às bancadas pretas e aos espelhos">
+    <div class="verbo__palavra"><h2>Senta</h2></div>
+    <p>Cadeira, espelho e a máquina no ponto. Daqui você só levanta na régua.</p>
+  </section>
+</div>
+
+<section class="galeria" id="galeria">
+  <div class="galeria__topo wrap">
+    <h2 class="h2" data-r>Na prateleira e na parede</h2>
+    <p data-r style="--i:1">Sete retratos da casa. Arraste para o lado.</p>
+  </div>
+  <div class="tira" id="tira" tabindex="0" role="region" aria-label="Fotos da barbearia, role para o lado">
+    <figure data-r><div class="quadro"><img src="assets/pomadas-topo.jpg" width="1200" height="1600" loading="lazy" alt="Potes de pomada Black White dispostos em círculo sobre uma mesa de tambor com folhagem"></div><figcaption>Pomadas na mesa de tambor</figcaption></figure>
+    <figure data-r style="--i:1"><div class="quadro"><img src="assets/cera-creme.jpg" width="1200" height="1600" loading="lazy" alt="Pirâmide de potes de cera creme seca sob um disco de vinil na parede azul"></div><figcaption>Cera creme seca e vinil na parede</figcaption></figure>
+    <figure data-r style="--i:2"><div class="quadro"><img src="assets/route66.jpg" width="1200" height="1600" loading="lazy" alt="Quadro da Route 66 na parede de palete, com potes de cera matte na prateleira"></div><figcaption>Cera matte e a Route 66</figcaption></figure>
+    <figure data-r style="--i:3"><div class="quadro"><img src="assets/prateleira-tv.jpg" width="1200" height="896" loading="lazy" alt="Prateleira de palete com shampoos, finalizadores e um quadro de caveira barbeira"></div><figcaption>Shampoos e finalizadores</figcaption></figure>
+    <figure data-r style="--i:4"><div class="quadro"><img src="assets/pomadas-mesa.jpg" width="1200" height="1600" loading="lazy" alt="Mesa de tambor com pomadas ao lado da parede de palete iluminada"></div><figcaption>O canto das pomadas</figcaption></figure>
+    <figure data-r style="--i:5"><div class="quadro"><img src="assets/endereco.jpg" width="900" height="1600" loading="lazy" alt="Placa de endereço Qd. 31 Lt. 08, número 530, Setor Paraíso, acima do poste de barbeiro"></div><figcaption>O poste de barbeiro e o nº 530</figcaption></figure>
+    <figure data-r style="--i:6"><div class="quadro"><img src="assets/salao.jpg" width="1200" height="1600" loading="lazy" alt="Vista do salão com piso de cerâmica, sofá claro e parede de palete"></div><figcaption>O salão visto da porta</figcaption></figure>
+  </div>
+</section>
+
+<section class="contato" id="onde">
+  <h2 class="linha" data-r>Onde fica <small>Sem hora marcada.<br>Chegou, entrou na fila.</small></h2>
+  <a class="linha" data-r href="https://www.google.com/maps/search/?api=1&query=Barbearia+JMB+Rua+Almeida+Guerra+530+Setor+Para%C3%ADso" target="_blank" rel="noopener">Rua Almeida Guerra, 530 <small>Abrir no mapa</small></a>
+  <p class="linha" data-r>Qd. 31 Lt. 08 · Setor Paraíso</p>
+  <p class="linha" data-r>Por ordem de chegada</p>
+  <a class="linha" data-r href="https://wa.me/5562999775807" target="_blank" rel="noopener">(62) 99977-5807 <small>WhatsApp</small></a>
+  <a class="linha bora" data-r href="https://wa.me/5562999775807?text=Ol%C3%A1%2C%20Barbearia%20JMB!%20Quero%20passar%20a%C3%AD." target="_blank" rel="noopener" aria-label="Bora? Chamar a Barbearia JMB no WhatsApp">Bora? <span class="bola"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></span></a>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="rodape__cols">
+    <div><h3>Endereço</h3><p>Rua Almeida Guerra, 530<br>Qd. 31 Lt. 08<br>Setor Paraíso</p></div>
+    <div><h3>Navegar</h3><ul><li><a href="#tabela">Tabela de preço</a></li><li><a href="#natal">Natal</a></li><li><a href="#casa">A casa</a></li><li><a href="#onde">Onde fica</a></li></ul></div>
+    <div><h3>Contato</h3><ul><li><a href="https://wa.me/5562999775807" target="_blank" rel="noopener">WhatsApp (62) 99977-5807</a></li><li><a href="tel:+5562999775807">Ligar agora</a></li></ul></div>
+    <div><h3>Regras da casa</h3><p>Atendimento por ordem de chegada.<br>Não trabalhamos com fiado.</p></div>
+  </div>
+  <div>
+    <div class="rodape__nome" aria-hidden="true"><svg viewBox="0 0 640 72" data-fit><text x="0" y="71">BARBEARIA JMB</text></svg></div>
+    <p class="rodape__legal"><span>© <span id="ano">2026</span> Barbearia JMB</span><span>Feliz Natal e um 2027 na régua.</span></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var brl = function(n){return 'R$ ' + n.toFixed(2).replace('.',',')};
+
+  /* nome ajustado à largura + gorro na última letra */
+  function ajusta(){
+    $$('svg[data-fit]').forEach(function(svg){
+      var t = svg.querySelector('text'); if(!t) return;
+      var w; try{ w = t.getComputedTextLength(); }catch(e){ return; }
+      if(!w) return;
+      svg.setAttribute('viewBox','0 0 '+(w-1.5).toFixed(1)+' 72');
+      var g = svg.querySelector('.gorro');
+      if(g){
+        try{
+          var b = t.getExtentOfChar(t.getNumberOfChars()-1);
+          var s = b.width*0.62/98;
+          g.setAttribute('transform','translate('+(b.x+b.width*0.30).toFixed(1)+' '+(-0.5-58*s).toFixed(1)+') rotate(10 '+(49*s).toFixed(1)+' '+(68*s).toFixed(1)+') scale('+s.toFixed(3)+')');
+          g.classList.add('on');
+        }catch(e){}
+      }
+    });
+  }
+  ajusta();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(ajusta);
+
+  /* entradas */
+  var alvo = $$('[data-r]');
+  if('IntersectionObserver' in window && !reduz){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    alvo.forEach(function(el){ io.observe(el); });
+  } else alvo.forEach(function(el){ el.classList.add('in'); });
+
+  /* nome que pesa na rolagem */
+  var nome = $('#nome'), heroEl = $('.hero'), tick = false;
+  function rola(){
+    tick = false;
+    var p = Math.min(1, Math.max(0, scrollY / (heroEl.offsetHeight || 1)));
+    nome.style.transform = 'scale(' + (1 - p*0.07).toFixed(4) + ')';
+  }
+  if(!reduz) addEventListener('scroll', function(){ if(!tick){ tick = true; requestAnimationFrame(rola); } }, {passive:true});
+
+  /* contagem para o Natal */
+  var titulo = $('#natalTitulo'), rel = $('#relogio'), un = {};
+  $$('b[data-u]', rel).forEach(function(b){ un[b.dataset.u] = b; });
+  function poe(k, v){
+    var s = String(v).padStart(2,'0');
+    if(un[k].textContent !== s){ un[k].textContent = s; un[k].classList.remove('tique'); void un[k].offsetWidth; un[k].classList.add('tique'); }
+  }
+  function conta(){
+    var agora = new Date(), ano = agora.getFullYear();
+    var natal = new Date(ano, 11, 25);
+    if(agora.getMonth() === 11 && agora.getDate() >= 25){
+      titulo.textContent = 'Feliz Natal da JMB';
+      poe('d',0); poe('h',0); poe('m',0); poe('s',0); return;
+    }
+    var ms = natal - agora, d = Math.floor(ms/864e5);
+    titulo.textContent = d > 1 ? 'Faltam ' + d + ' dias para o Natal' : (d === 1 ? 'Falta 1 dia para o Natal' : 'O Natal é amanhã');
+    poe('d', d); poe('h', Math.floor(ms/36e5)%24); poe('m', Math.floor(ms/6e4)%60); poe('s', Math.floor(ms/1e3)%60);
+  }
+  conta(); setInterval(conta, 1000);
+  $('#ano').textContent = new Date().getFullYear();
+
+  /* tabela -> pedido -> WhatsApp */
+  var botoes = $$('.servico'), itens = $('#itens'), totalEl = $('#total'), zap = $('#zap'), presente = $('#presente');
+  var exclui = { combo:['corte','barba'], corte:['combo'], barba:['combo'], 'risco-simples':['risco-detalhado'], 'risco-detalhado':['risco-simples'] };
+  var mostrado = 0, anim;
+  function porId(id){ return botoes.filter(function(b){ return b.dataset.id === id; })[0]; }
+  function sobe(ate){
+    cancelAnimationFrame(anim);
+    if(reduz){ mostrado = ate; totalEl.textContent = brl(ate); return; }
+    var de = mostrado, t0 = performance.now();
+    (function passo(t){
+      var p = Math.min(1,(t - t0)/450), e = 1 - Math.pow(1-p,3);
+      mostrado = de + (ate - de)*e; totalEl.textContent = brl(Math.round(mostrado));
+      if(p < 1) anim = requestAnimationFrame(passo); else mostrado = ate;
+    })(t0);
+  }
+  function atualiza(){
+    var sel = botoes.filter(function(b){ return b.getAttribute('aria-pressed') === 'true'; });
+    var total = sel.reduce(function(s,b){ return s + Number(b.dataset.preco); }, 0);
+    itens.innerHTML = '';
+    if(!sel.length){ var v = document.createElement('li'); v.className = 'vazio'; v.textContent = 'Nada marcado ainda.'; itens.appendChild(v); }
+    sel.forEach(function(b){
+      var li = document.createElement('li'), a = document.createElement('span'), c = document.createElement('span');
+      a.textContent = b.dataset.nome; c.textContent = brl(Number(b.dataset.preco)); li.appendChild(a); li.appendChild(c); itens.appendChild(li);
+    });
+    sobe(total);
+    var msg = 'Olá, Barbearia JMB!';
+    if(sel.length){
+      msg += ' Quero fazer: ' + sel.map(function(b){ return b.dataset.nome + ' (' + brl(Number(b.dataset.preco)) + ')'; }).join(', ') + '. Total: ' + brl(total) + '.';
+    }
+    var quem = presente.value.trim();
+    if(quem) msg += ' É presente de Natal para ' + quem + '.';
+    zap.href = 'https://wa.me/5562999775807?text=' + encodeURIComponent(msg);
+  }
+  botoes.forEach(function(b){
+    b.addEventListener('click', function(){
+      var liga = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', String(liga));
+      if(liga) (exclui[b.dataset.id] || []).forEach(function(id){ porId(id).setAttribute('aria-pressed','false'); });
+      /* corte + barba marcados viram a linha do combo */
+      if(porId('corte').getAttribute('aria-pressed') === 'true' && porId('barba').getAttribute('aria-pressed') === 'true'){
+        porId('corte').setAttribute('aria-pressed','false'); porId('barba').setAttribute('aria-pressed','false'); porId('combo').setAttribute('aria-pressed','true');
+      }
+      atualiza();
+      if(liga) rajada(b);
+    });
+  });
+  presente.addEventListener('input', atualiza);
+
+  /* galeria: arrastar com o mouse, setas no teclado */
+  var tira = $('#tira'), ativo = false, x0 = 0, s0 = 0, andou = 0;
+  tira.addEventListener('pointerdown', function(e){ if(e.pointerType !== 'mouse') return; ativo = true; andou = 0; x0 = e.clientX; s0 = tira.scrollLeft; tira.classList.add('arrasta'); });
+  addEventListener('pointermove', function(e){ if(!ativo) return; andou = e.clientX - x0; tira.scrollLeft = s0 - andou; });
+  addEventListener('pointerup', function(){ ativo = false; tira.classList.remove('arrasta'); });
+  tira.addEventListener('dragstart', function(e){ e.preventDefault(); });
+  tira.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){ e.preventDefault(); tira.scrollBy({left:(e.key === 'ArrowRight' ? 1 : -1) * tira.clientWidth * .6, behavior: reduz ? 'auto' : 'smooth'}); }
+  });
+
+  /* luzes: clicar troca a cor */
+  var cores = ['#c8102e','#f26b1d','#f3f0ea','#2fa36b','#1f5fd6'];
+  $$('.luzes i').forEach(function(l){ l.addEventListener('click', function(){ l.style.setProperty('--c', cores[Math.floor(Math.random()*cores.length)]); }); });
+
+  /* neve */
+  var cv = $('#neve'), cx = cv.getContext('2d'), flocos = [], extras = [], ligada = !reduz, raf, W, H, dpr;
+  var btn = $('#neveBtn');
+  try{ if(localStorage.getItem('jmb-neve') === '0') ligada = false; }catch(e){}
+  function mede(){
+    dpr = Math.min(2, devicePixelRatio || 1); W = innerWidth; H = innerHeight;
+    cv.width = W*dpr; cv.height = H*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
+    var n = Math.round(Math.min(110, W/13));
+    while(flocos.length < n) flocos.push(novo(true));
+    flocos.length = n;
+  }
+  function novo(espalha){ return { x:Math.random()*W, y:espalha ? Math.random()*H : -8, r:1+Math.random()*2.6, v:.35+Math.random()*1.1, f:Math.random()*6.28, a:.35+Math.random()*.55 }; }
+  function rajada(el){
+    if(!ligada) return;
+    var b = el.getBoundingClientRect();
+    for(var i=0;i<18;i++){ var ang = Math.random()*6.28, vel = 1.5+Math.random()*3.5; extras.push({ x:b.left+30, y:b.top+b.height/2, vx:Math.cos(ang)*vel, vy:Math.sin(ang)*vel-1.5, r:1.5+Math.random()*2.5, vida:1 }); }
+  }
+  function quadro(){
+    cx.clearRect(0,0,W,H);
+    cx.fillStyle = '#f3f0ea';
+    for(var i=0;i<flocos.length;i++){
+      var f = flocos[i]; f.y += f.v; f.f += .012; f.x += Math.sin(f.f)*.45;
+      if(f.y > H+8) flocos[i] = novo(false);
+      cx.globalAlpha = f.a; cx.beginPath(); cx.arc(f.x,f.y,f.r,0,6.283); cx.fill();
+    }
+    for(var j=extras.length-1;j>=0;j--){
+      var e = extras[j]; e.x += e.vx; e.y += e.vy; e.vy += .12; e.vida -= .022;
+      if(e.vida <= 0){ extras.splice(j,1); continue; }
+      cx.globalAlpha = e.vida; cx.fillStyle = j%2 ? '#f26b1d' : '#f3f0ea'; cx.beginPath(); cx.arc(e.x,e.y,e.r,0,6.283); cx.fill(); cx.fillStyle = '#f3f0ea';
+    }
+    cx.globalAlpha = 1;
+    raf = requestAnimationFrame(quadro);
+  }
+  function aplica(){
+    btn.setAttribute('aria-pressed', String(ligada));
+    cancelAnimationFrame(raf);
+    if(ligada){ mede(); quadro(); } else cx.clearRect(0,0,W||0,H||0);
+  }
+  btn.addEventListener('click', function(){ ligada = !ligada; try{ localStorage.setItem('jmb-neve', ligada ? '1' : '0'); }catch(e){} aplica(); });
+  addEventListener('resize', function(){ if(ligada) mede(); });
+  document.addEventListener('visibilitychange', function(){ cancelAnimationFrame(raf); if(!document.hidden && ligada) quadro(); });
+  aplica();
+})();
+</script>
+</body>
+</html>
